@@ -1,0 +1,358 @@
+@import "fontawesome/fontawesome.less";
+@import "fontawesome/fa-solid";
+
+@import "_vars";
+@import "_globals";
+
+
+.panel {
+    width: 600px;
+    background-color: @panel-color;
+    position: absolute;
+    left: calc(~"50% - 300px");
+    top: 100px;
+    overflow: hidden;
+    box-shadow: 5px 5px 30px darken(@background-color, 12%);
+    &:after {
+        content: "";
+        clear: both;
+    }
+    h1.title {
+        border-bottom: @border-color 2px solid;
+        padding: 6px 20px;
+        font-size: 1.45em;
+        color: darken(@border-color, 35%);
+        text-transform: uppercase;
+        transform: scale(1, .85);
+        line-height: 35px;
+    }
+    &-side {
+        width: 15%;
+        float: left;
+        height: 500px;
+        font-size: 15px;
+        text-align: center;
+        .fa {
+            padding: 30px 0;
+            width: 100%;
+            color: @side-icon-color;
+            &:hover {
+                cursor: pointer;
+                background-color: lighten(@side-back-color, 5%);
+            }
+            &.active {
+                color: @accent-color;
+                background-color: darken(@side-back-color, 8%);
+                box-shadow: inset 0px 0px 3px darken(@side-back-color, 25%);
+            }
+        }
+    }
+}
+
+.status, .add, .moderation {
+    float: left;
+    width: 85%;
+}
+
+.status {
+    ul {
+        margin-left: 15px;
+        margin-top: 20px;
+        li {
+            margin-bottom: 10px;
+            padding-bottom: 3px;
+            border-bottom: @border-color 1px solid;
+            width: 90%;
+            &:last-child {
+                border: 0;
+                text-align: right;
+            }
+            b {
+                position: absolute;
+                right: 80px;
+                color: green;
+            }
+            &.error b {
+                color: red;
+            }
+        }
+    }
+}
+
+.add {
+    display: none;
+    form {
+        margin-left: 15px;
+        margin-top: 20px;
+        margin-right: 15px;
+        .row {
+            width: 100%;
+            float: left;
+            margin-bottom: 15px;
+        }
+        .inp {
+            height: 40px;
+            display: inline-block;
+            width: 45%;
+            &.desc {
+                width: 100%;
+            }
+        }
+        button {
+            padding: 10px 30px;
+            margin-top: -5px;
+        }
+    }
+}
+
+.moderation {
+    display: none;
+    ul {
+        margin-left: 10px;
+        margin-top: 10px;
+        li {
+            border-bottom: @border-color 1px solid;
+            padding: 10px;
+            &::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .text {
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .date {
+                float: right;
+            }
+            form {
+                float: right;
+            }
+        }
+    }
+}
+
+.products-wrapper {
+    min-height: 100%;
+    box-sizing: border-box;
+    width: 80%;
+    position: relative;
+    top: 80px;
+    left: 10%;
+    background-color: @panel-color;
+    padding: 20px;
+    text-align: center;
+    > .title {
+        border-bottom: @border-color 1px solid;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+        font-size: 1.35em;
+    }
+    .options {
+        width: 100%;
+        height: 40px;
+        display: block;
+        position: relative;
+        ul {
+            float: right;
+            margin-bottom: 10px;
+            li {
+                position: relative;
+                float: left;
+                margin-left: 10px;
+                cursor: pointer;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    transition: width.3s;
+                    bottom: 0;
+                    width: 0;
+                    left: 0;
+                    border-bottom: @pagination-back-color 1px solid;
+                }
+                &:hover {
+                    &::after {
+                        width: 100%;
+                    }
+                }
+                .fa {
+                    color: @icon-color;
+                    //opacity: 0;
+                }
+            }
+        }
+    }
+    .products-container {
+        .product-card {
+            width: 200px;
+            height: 370px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            padding: 8px;
+            position: relative;
+            display: inline-block;
+            border: transparent 1px solid;
+            border-radius: 3px;
+            text-decoration: none;
+            &::after {
+                content: "";
+                height: 60px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 70%)
+            }
+            .head {
+                margin-bottom: 5px;
+                .reviews {
+                    float: right;
+                    &-count {
+                        float: left;
+                        margin-right: 8px;
+                    }
+                    .fa {
+                        color: @icon-color;
+                    }
+                }
+                .title {
+                    text-align: left;
+                    padding-left: 10px;
+                }
+            }
+            .description {
+                min-height: 70px;
+                transition: all .1s;
+                position: absolute;
+                left: 8px;
+                right: 8px;
+                margin-top: 28px;
+                text-align: center;
+                padding: 15px 18px;
+                border-radius: 3px;
+                max-height: 75px;
+                overflow: hidden;
+            }
+            .price-block {
+                position: absolute;
+                width: 100px;
+                left: calc(~"50% - 50px");
+                margin-top: 5px;
+            }
+            &:hover {
+                border-color: @border-color;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .pagination {
+        display: inline-block;
+        ul li {
+            line-height: 25px;
+            float: left;
+            margin-right: 5px;
+            color: @pagination-back-color;
+            border-radius: 3px;
+            cursor: pointer;
+            &.nav {
+                border: transparent 1px solid;
+                padding: 0 5px;
+                &.disabled {
+                    cursor: default;
+                    color: lighten(@pagination-back-color, 15%);
+                    border: 0;
+                }
+                &:hover {
+                    border-color: lighten(@pagination-back-color, 12%);
+                }
+            }
+            &#prev {
+                margin-right: 15px;
+            }
+            &#next {
+                margin-left: 10px;
+            }
+            &.page {
+                cursor: default;
+                border: 0;
+            }
+        }
+    }
+    .footer {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background-color: #333;
+        border-radius: 3px 3px 0 0;
+    }
+}
+
+.product {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 800px;
+    background-color: @panel-color;
+    left: calc(~"50% - 400px");
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    box-shadow: 5px 5px 10px darken(@background-color, 6%);
+    h1 {
+        font-size: 1.35em;
+    }
+    img {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    p {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    .price {
+        border-bottom: @border-color 1px solid;
+        padding: 3px;
+    }
+
+    .reviews-container {
+        margin-top: 55px;
+        .add-review {
+            border-bottom: @border-color 1px solid;
+            padding-bottom: 20px;
+            h1 {
+                border-bottom: @border-color 1px solid;
+                margin-bottom: 20px;
+                padding-bottom: 5px;
+            }
+            .textarea-wrapper {
+                width: 100%;
+                textarea {
+                    width: 500px;
+                }
+            }
+            .button {
+                margin-top: 10px;
+            }
+        }
+        .review {
+            position: relative;
+            padding: 5px 5px;
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                width: 100%;
+                border-bottom: @border-color 1px solid;
+            }
+            .date {
+                float: right;
+                color: @text-light-color;
+            }
+        }
+    }
+}

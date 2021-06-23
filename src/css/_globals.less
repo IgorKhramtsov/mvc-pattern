@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    color: @text-color;
+    list-style: none;
+}
+
+body {
+    background-color: @background-color;
+}
+.right {
+    float: right;
+}
+.hidden {
+    display: none;
+}
+
+.button {
+    transition: all.1s;
+    border: 0;
+    padding: 8px 18px;
+    text-transform: uppercase;
+    background-color: @background-color;
+    outline: 0;
+    border-radius: 4px;
+    &:enabled {
+        &:hover {
+            background-color: lighten(@background-color, 4%);
+            box-shadow: 1px 1px 1px darken(@background-color, 12%);
+            cursor: pointer;
+        }
+        &:active {
+            background-color: darken(@background-color, 6%);
+            box-shadow: inset -1px -1px 3px darken(@background-color, 25%);
+        }
+    }
+    &:disabled {
+        background-color: lighten(@background-color, 2%);
+        color: lighten(@text-color, 40%);
+    }
+}
+
+.notify {
+    position: fixed;
+    width: 500px;
+    top: -100px;
+    z-index: 100;
+    left: calc(~"50% - 250px");
+    padding: 15px 0;
+    background-color: @panel-color;
+    text-align: center;
+    box-shadow: 5px 5px 15px darken(@background-color, 20%);
+    h2 {
+        margin-bottom: 15px;
+        font-size: 1.3em;
+        text-transform: uppercase;
+    }
+    &.error {
+        border-bottom: 2px @input-error-color solid;
+    }
+}
+
+.inp {
+    position: relative;
+    //height: 40px;
+    //display: inline-block;
+    //width: 45%;
+    label {
+        transition: top.1s;
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        background-color: @panel-color;
+        padding: 0 10px;
+    }
+    input, textarea {
+        position: relative;
+        outline: 0;
+        box-sizing: border-box;
+        border: darken(@border-color, 10%) 1px solid;
+        border-radius: 5px;
+        padding: 10px 10px;
+        width: 100%;
+        &.error {
+            border-color: @input-error-color;
+            & + label {
+                color: @input-error-color;
+            }
+        }
+        &:focus, &:valid {
+            & + label {
+                top: -10px;
+            }
+        }
+    }
+    &.desc {
+        width: 100%;
+        textarea {
+            max-width: 100%;
+        }
+    }
+}
+
